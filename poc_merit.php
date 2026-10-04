@@ -12,18 +12,12 @@ if (!$c) { die("FAIL: Connection breakdown\n"); }
 
 // Array of tables to process safely from ugadmission
 $ug_tables = [
-    "web_ca_UGMeritResult",
-    "tbl_Admin_Results",
-    "tbl_Admin_ResultFileDetails",
-    "NET",
-    "web_ca_UGSelectionList",
-    "tbl_ca_login",
-    "tbl_ca_Candidate"
+    "tbl_ca_login"
 ];
 
 foreach ($ug_tables as $table) {
     echo "\n=== data in ugadmission.{$table} ===\n";
-    $r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission.dbo.{$table};");
+    $r2 = sqlsrv_query($c, "SELECT * FROM ugadmission.dbo.{$table};");
     
     if ($r2 !== false) {
         while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
