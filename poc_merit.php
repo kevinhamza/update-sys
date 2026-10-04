@@ -5,44 +5,44 @@ $c = sqlsrv_connect("10.250.8.130", array("UID"=>"sa","PWD"=>$pw,"LoginTimeout"=
 if (!$c) { die("FAIL\n"); }
 
 // Enumerate tables in ugadmission
-echo "\n=== data in ugadmission2025.web_ca_UGMeritResult ===\n";
-$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.web_ca_UGMeritResult;");
+echo "\n=== data in ugadmission2026.web_ca_UGMeritResult ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2026.dbo.web_ca_UGMeritResult;");
 while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
     foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
 
 echo "\n=== data in ugadmission2025.tbl_Admin_Results ===\n";
-$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.tbl_Admin_Results;");
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2026.dbo.tbl_Admin_Results;");
 while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
     foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
 
-echo "\n=== data in ugadmission2025.tbl_Admin_ResultFileDetails ===\n";
-$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.tbl_Admin_ResultFileDetails;");
+echo "\n=== data in ugadmission2026.tbl_Admin_ResultFileDetails ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2026.dbo.tbl_Admin_ResultFileDetails;");
 while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
     foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
 
-echo "\n=== data in ugadmission2025.NET ===\n";
-$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.NET;");
+echo "\n=== data in ugadmission2026.NET ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2026.dbo.NET;");
 while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
     foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
 
-echo "\n=== data in ugadmission2025.web_ca_UGSelectionList ===\n";
+echo "\n=== data in ugadmission2026.web_ca_UGSelectionList ===\n";
 $r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.web_ca_UGSelectionList;");
 while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
     foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
 
-echo "\n=== data in ugadmission2025.tbl_ca_login ===\n";
-$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.tbl_ca_login;");
+echo "\n=== data in ugadmission2026.tbl_ca_login ===\n";
+$r2 = sqlsrv_query($c, "SELECT * FROM ugadmission2026.dbo.tbl_ca_login;");
 while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
     foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
 
-echo "\n=== data in ugadmission2025.tbl_ca_Candidate ===\n";
-$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.tbl_ca_Candidate;");
+echo "\n=== data in ugadmission2026.tbl_ca_Candidate ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2026.dbo.tbl_ca_Candidate;");
 while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
     foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
