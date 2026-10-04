@@ -52,5 +52,10 @@ echo "\n=== Tables in ugadmission2026 ===\n";
 $r3 = sqlsrv_query($c, "SELECT TABLE_NAME FROM ugadmission2026.INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME");
 while($row = sqlsrv_fetch_array($r3, SQLSRV_FETCH_NUMERIC)) echo $row[0]."\n";
 
+
+echo "\n=== DBS ===\n";
+$r3 = sqlsrv_query($c, "SELECT name, create_date FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb');");
+while($row = sqlsrv_fetch_array($r3, SQLSRV_FETCH_NUMERIC)) echo $row[0]."\n";
+
 echo "\nDONE\n";
 ?>
