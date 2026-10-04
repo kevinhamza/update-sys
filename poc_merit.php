@@ -1,76 +1,56 @@
 <?php
-// 1. FORCE PHP TO SHOW THE EXACT ERROR INSTEAD OF STOPPING BLANK
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 header("Content-Type: text/plain");
-
 $pw = 'S$u!p3e0rStar';
 $c = sqlsrv_connect("10.250.8.130", array("UID"=>"sa","PWD"=>$pw,"LoginTimeout"=>8));
+if (!$c) { die("FAIL\n"); }
 
-if (!$c) { 
-    die("CONNECTION FAILED: " . print_r(sqlsrv_errors(), true)); 
+// Enumerate tables in ugadmission
+echo "\n=== data in ugadmission2025.web_ca_UGMeritResult ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.web_ca_UGMeritResult;");
+while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
+    foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
 
-// Target tables
-$tables = [
-    "web_ca_UGMeritResult",
-    "tbl_Admin_Results",
-    "tbl_Admin_ResultFileDetails",
-    "NET",
-    "web_ca_UGSelectionList",
-    "tbl_ca_login",
-    "tbl_ca_Candidate"
-];
-
-foreach ($tables as $table) {
-    echo "\n=== data in ugadmission2025.{$table} ===\n";
-    
-    $query = "SELECT TOP 50 * FROM ugadmission2025.dbo.{$table};";
-    $r2 = sqlsrv_query($c, $query);
-    
-    // Check if SQL query itself failed (e.g., column/table doesn't exist)
-    if ($r2 === false) {
-        echo "SQL ERROR: Failed to execute query.\n";
-        print_r(sqlsrv_errors());
-        continue;
-    }
-    
-    $rowCount = 0;
-    while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_ASSOC)) {
-        $rowCount++;
-        // Print the columns dynamically by key-value pairing to avoid index crashes
-        foreach($row as $columnName => $value) {
-            // Format dates if any column holds a DateTime object
-            if ($value instanceof DateTime) {
-                $value = $value->format('Y-m-d H:i:s');
-            }
-            echo "[{$columnName}]: {$value} | ";
-        }
-        echo "\n";
-    }
-    
-    if ($rowCount === 0) {
-        echo "(Table is empty - 0 rows returned)\n";
-    }
-    
-    sqlsrv_free_stmt($r2);
+echo "\n=== data in ugadmission2025.tbl_Admin_Results ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.tbl_Admin_Results;");
+while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
+    foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
 }
 
+echo "\n=== data in ugadmission2025.tbl_Admin_ResultFileDetails ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.tbl_Admin_ResultFileDetails;");
+while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
+    foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
+}
+
+echo "\n=== data in ugadmission2025.NET ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.NET;");
+while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
+    foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
+}
+
+echo "\n=== data in ugadmission2025.web_ca_UGSelectionList ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.web_ca_UGSelectionList;");
+while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
+    foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
+}
+
+echo "\n=== data in ugadmission2025.tbl_ca_login ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.tbl_ca_login;");
+while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
+    foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
+}
+
+echo "\n=== data in ugadmission2025.tbl_ca_Candidate ===\n";
+$r2 = sqlsrv_query($c, "SELECT TOP 50 * FROM ugadmission2025.dbo.tbl_ca_Candidate;");
+while($row = sqlsrv_fetch_array($r2, SQLSRV_FETCH_NUMERIC)) {
+    foreach($row as $val) { echo ($val instanceof DateTime ? $val->format('Y-m-d H:i:s') : $val) . " | "; } echo "\n";
+}
+
+// Enumerate tables in ugadmission2026
 echo "\n=== Tables in ugadmission2026 ===\n";
-$r3 = sqlsrv_query($c, "SELECT TABLE_NAME FROM ugadmission2026.INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME;");
-
-if ($r3 !== false) {
-    while($row = sqlsrv_fetch_array($r3, SQLSRV_FETCH_NUMERIC)) {
-        echo $row[0]."\n";
-    }
-    sqlsrv_free_stmt($r3);
-} else {
-    echo "SQL ERROR fetching ugadmission2026 tables.\n";
-    print_r(sqlsrv_errors());
-}
+$r3 = sqlsrv_query($c, "SELECT TABLE_NAME FROM ugadmission2026.INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME");
+while($row = sqlsrv_fetch_array($r3, SQLSRV_FETCH_NUMERIC)) echo $row[0]."\n";
 
 echo "\nDONE\n";
-sqlsrv_close($c);
 ?>
